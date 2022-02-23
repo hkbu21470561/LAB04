@@ -29,7 +29,7 @@ def main():
     # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("add", add))
     dispatcher.add_handler(CommandHandler("help", help_command))
-
+    dispatcher.add_handler(CommandHandler("hello", hello))
 
     # To start the bot:
     updater.start_polling()
@@ -66,7 +66,7 @@ def hello(update: Update, context: CallbackContext) -> None:
     try: 
         global redis1
         logging.info(context.args[0])
-        msg = context.args[0]   # /add keyword <-- this should store the keyword
+        msg = context.args[0]   # /hello keyword <-- this should store the keyword
         redis1.incr(msg)
         update.message.reply_text('Good day, ' + msg +  '!')
     except (IndexError, ValueError):
